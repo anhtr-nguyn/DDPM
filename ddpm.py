@@ -90,3 +90,21 @@ def train(args):
         sampled_images = diffusion.sample(model=model, n=images.shape[0])
         save_images(sampled_images, path= os.path.join("results", args.run_name,f"{epoch}.jpg"))
         
+        
+def launch():
+    import argparse
+    
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args()
+    
+    args.run_name = "DDPM"
+    args.epochs = 500
+    args.batch_size = 12
+    args.image_size = 64
+    args.dataset_path = "data/path/here"
+    args.device = "cuda"
+    args.lr = 3e-4
+    train(args)
+
+if __name__ == "__main__":
+    launch()
